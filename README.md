@@ -4,7 +4,7 @@
 > **Bird** = **B**atch **i**s **r**eally **b**ad  
 > Not that a language written in it is any better 
 
-*Bird* is a programming language written entirely in Microsoft's batch scripting language. It adds amazing features such as [functions](examples/Function.bird) and [importing libraries](examples/HelloWorld.bird) like any other programming language at the cost of stuff like arithmetic and if statements.
+*Bird* is a toy programming language written entirely in Microsoft's batch scripting language. It adds amazing features such as [functions](examples/Function.bird) and [importing libraries](examples/HelloWorld.bird) like any other programming language at the cost of stuff like arithmetic and if statements.
 
 ## Features
 * Functions with parameters
@@ -17,7 +17,7 @@
 use std
 
 define Main
-    Println Hello World
+    Println "Hello World"
 end
 
 # Prints "Hello World"
@@ -60,9 +60,9 @@ Hello Elias
 ```
 
 ## TODO
-* Arithmetic
-* Loops
-* If-statements
-* Expand std
+- [ ] Arithmetic
+- [ ] Loops
+- [ ] If-statements
+- [ ] Expand std
 
 <sub><sup>Batch is pain. Batch is pain. Batch is pain.</sup></sub>

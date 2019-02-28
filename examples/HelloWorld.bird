@@ -1,7 +1,7 @@
 use std
 
 define Main
-    Println Hello World
+    Println "Hello World"
 end
 
 # Prints "Hello World"

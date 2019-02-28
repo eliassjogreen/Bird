@@ -1,9 +1,9 @@
 library
 
 define Print
-    :echo | set /p=%*
+    : echo | set /p=%~2
 end
 
 define Println
-    :echo %*
+    : echo %~2
 end
