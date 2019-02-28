@@ -27,11 +27,11 @@ end
 use std
 
 define Main $name
-    Hello $name
+    Println Hello $name
 end
 
 define Hello $name
-    Println Hello $name
+    return "Hello " $name
 end
 
 # Prints "Hello <input>"
