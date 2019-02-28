@@ -1,0 +1,9 @@
+library
+
+define Print
+    :echo | set /p=%*
+end
+
+define Println
+    :echo %*
+end

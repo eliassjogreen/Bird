@@ -1,0 +1,11 @@
+use std
+
+define Main $name
+    Hello $name
+end
+
+define Hello $name
+    Println Hello $name
+end
+
+# Prints "Hello <input>"
