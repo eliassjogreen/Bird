@@ -4,4 +4,4 @@ define Main
     Println "Hello World"
 end
 
-# Prints "Hello World"
+# Prints 'Hello World'

@@ -1,0 +1,8 @@
+use std
+
+define Main $name
+    $name Prompt "What is your name: "
+    Println concat "Hello " $name
+end
+
+# Prompts 'What is your name: ' then prints 'Hello <name>'

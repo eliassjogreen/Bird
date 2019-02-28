@@ -34,7 +34,7 @@ define Hello $name
     return "Hello " $name
 end
 
-# Prints "Hello <input>"
+#  Prints 'Hello ' + your first command line parameter
 ```
 
 ## Usage

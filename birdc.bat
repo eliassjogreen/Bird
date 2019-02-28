@@ -83,13 +83,16 @@ for /f "tokens=* delims= " %%a in (%input%) do (
                     if not "!word[1]!" == "" (
                         if not "!word[1]:~0,1!" == "$" (
                             if not !word[1]:~0^,1!!word[1]:~-1! == "" (
+                                if "!debug!" == "true" echo Call: !word[1]!
+
                                 set callSet=true
-                                (echo | set /p=call :!word[1]! _0 ) >> %output%
+                                (echo | set /p=call :!word[1]! !word[0]! ) >> %output%
                             )
                         )
                     )
 
-                    if "callSet" == "false" (
+                    if not "!callSet!" == "true" (
+                        if "!debug!" == "true" echo Setting using no call
                         (echo | set /p=set !word!=) >> %output%
                     )
                 ) else if not "!word[0]!" == "define" (
@@ -126,7 +129,11 @@ for /f "tokens=* delims= " %%a in (%input%) do (
 
                     for /l %%j in (2,1,!i!) do (
                         if "!word[%%j]:~0,1!" == "$" (
-                            (echo | set /p=set !word[%%j]!=%%~!i!) >> %output%
+                            if "%%j" == "!i!" (
+                                (echo | set /p=set !word[%%j]!=%%~%%j) >> %output%
+                            ) else (
+                                (echo set !word[%%j]!=%%~%%j) >> %output%
+                            )
                         )
                     )
                 )
@@ -140,7 +147,7 @@ for /f "tokens=* delims= " %%a in (%input%) do (
                 if "%%i" == "0" (
                     set return=true
                     if not "!word[1]!" == "" (
-                        if "!debug!" == "true" echo Return: !word[1]!
+                        if "!debug!" == "true" echo Return: !line!
 
                         (echo | set /p=set %%~1=) >> %output%
                     ) else (
@@ -176,9 +183,8 @@ for /f "tokens=* delims= " %%a in (%input%) do (
         (echo set _1=^^!_1:^"=^^!) >> %output%
         (echo call :!word[0]! _0 ^"^^!_1^^!^") >> %output%
     )
-
     if "!callSet!" == "true" (
-        (echo set !word[0]!=^^!_0:^"=^^!) >> %output%
+        (echo set !word[0]!=^^!!word[0]!:^"=^^!) >> %output%
     )
     if "!return!" == "true" (
         (echo exit /b 0) >> %output%
