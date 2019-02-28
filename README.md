@@ -1,6 +1,7 @@
 <img src="./assets/bird_dark.svg" height="250" align="left"></img>
 
 # Bird
+![Discord](https://img.shields.io/discord/491348922367868938.svg?label=Discord) ![GitHub](https://img.shields.io/github/license/eliassjogreen/Bird.svg) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/eliassjogreen/Bird.svg)
 > **Bird** = **B**atch **i**s **r**eally **b**ad  
 > Not that a language written in it is any better 
 
