@@ -40,7 +40,7 @@ end
 ## Usage
 Clone or download this repo and then enter the new folder
 ```console
-$ git clone https://github.com/eliassjogreen/bird
+$ git clone https://github.com/eliassjogreen/Bird.git
 $ cd .\bird-master\
 ```
 Then build the libraries in the `.\lib\` folder
