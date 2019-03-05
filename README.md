@@ -1,8 +1,8 @@
 <img src="./assets/bird_dark.svg" height="250" align="left"></img>
 
 # Bird
-![Discord](https://img.shields.io/discord/491348922367868938.svg?label=Discord) ![GitHub](https://img.shields.io/github/license/eliassjogreen/Bird.svg) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/eliassjogreen/Bird.svg)
-> **Bird** = **B**atch **i**s **r**eally **b**ad  
+[![Discord](https://img.shields.io/discord/491348922367868938.svg?label=Discord)](https://discord.gg/HE7bccW) ![GitHub](https://img.shields.io/github/license/eliassjogreen/Bird.svg) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/eliassjogreen/Bird.svg)
+> **Bird** = **B**atch **i**s **r**eally ba**d**  
 > Not that a language written in it is any better 
 
 *Bird* is a toy programming language written entirely in Microsoft's batch scripting language. It adds amazing features such as [functions](examples/Function.bird) and [importing libraries](examples/HelloWorld.bird) like any other programming language at the cost of stuff like arithmetic and if statements.
