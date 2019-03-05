@@ -103,7 +103,7 @@ for /f "tokens=* delims= " %%a in (%input%) do (
             ) else if !word:~0^,1!!word:~-1! == "" (
                 if "!debug!" == "true" echo Value: !word!
 
-                (echo | set /p="!word!") >> %output%
+                (echo | set /p="!word! ") >> %output%
             ) else if "!word!" == "use" (
                 if "%%i" == "0" (
                     for /l %%j in (1,1,!i!) do (

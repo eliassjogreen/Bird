@@ -1,0 +1,7 @@
+use Std Math
+
+define Main
+    println Add "1" "2"
+end
+
+# Prints '3'

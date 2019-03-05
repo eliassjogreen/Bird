@@ -39,29 +39,30 @@ goto :eof
 :install
 if "%2"=="" (
 	echo Compiling libraries...
-	for /r %%f in (.\lib\*.bird) do (
-	    echo compiling %%~nf...
-	    .\birdc.bat .\lib\%%~nxf .\lib\%%~nf.blib rem debug
+	for /r %%f in (lib\*.bird) do @(
+	    echo Compiling %%~nf...
+	    .\birdc.bat lib\%%~nxf lib\%%~nf.blib
+		echo Compiled %%~nf!
 	)
-	echo Done!
 ) else (
-	for %%f in ("%2") do (
-		echo Downloading: %%~nxf to %~dp0^lib\%%~nxf
+	for %%f in ("%2") do @(
+		echo Downloading %%~nxf...
 		powershell -Command "(New-Object Net.WebClient).DownloadFile('"%%~f"', '"%~dp0^lib\%%~nxf"')"
 		echo Downloaded^^!
 
 		if "%%~xf" == ".bird" (
 			echo Compiling...
-			.\birdc.bat .\lib\%%~nxf .\lib\%%~nf.blib rem debug
+			.\birdc.bat lib\%%~nxf lib\%%~nf.blib
+			echo Compiled %%~nf!
 		)
-
-		echo Done!
 	)
 )
+echo Done!
 goto :eof
 
 :help
 echo Commands:
 echo     compile ^<input file^> ^<output file^> - Compiles a bird file into batch
 echo     run ^<input file^>                   - Runs a bird file without creating a file
+echo     install ^<link to file?^>            - Downloads and compiles file if link is supplied else compiles libraries directory
 goto :eof
