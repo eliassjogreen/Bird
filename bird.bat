@@ -9,6 +9,8 @@ if "%1"=="compile" (
 	goto :compile
 ) else if "%1"=="run" (
 	goto :run
+) else if "%1"=="install" (
+	goto :install
 ) else (
 	goto :help
 )
@@ -32,6 +34,30 @@ shift
 :: echo Running %in%
 call .\tmp.bat %0 %1 %2 %3 %4 %5 %6 %7 %8 %9
 del .\tmp.bat
+goto :eof
+
+:install
+if "%2"=="" (
+	echo Compiling libraries...
+	for /r %%f in (.\lib\*.bird) do (
+	    echo compiling %%~nf...
+	    .\birdc.bat .\lib\%%~nxf .\lib\%%~nf.blib rem debug
+	)
+	echo Done!
+) else (
+	for %%f in ("%2") do (
+		echo Downloading: %%~nxf to %~dp0^lib\%%~nxf
+		powershell -Command "(New-Object Net.WebClient).DownloadFile('"%%~f"', '"%~dp0^lib\%%~nxf"')"
+		echo Downloaded^^!
+
+		if "%%~xf" == ".bird" (
+			echo Compiling...
+			.\birdc.bat .\lib\%%~nxf .\lib\%%~nf.blib rem debug
+		)
+
+		echo Done!
+	)
+)
 goto :eof
 
 :help

@@ -44,9 +44,9 @@ Clone or download this repo and then enter the new folder
 $ git clone https://github.com/eliassjogreen/Bird.git
 $ cd .\bird-master\
 ```
-Then build the libraries in the `.\lib\` folder
+Then compile the libraries in the `.\lib\` folder
 ```console
-$ .\build.bat
+$ .\bird.bat install
 ```
 And you are ready to go! For example:
 ```console
