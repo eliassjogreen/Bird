@@ -80,6 +80,7 @@ Or:
 $ .\bird.bat compile .\examples\Function.bird .\examples\Function.bat
 $ .\examples\Function.bat Elias
 Hello Elias
+32
 ```
 
 ## TODO
