@@ -59,6 +59,17 @@ end
 # 5
 # 0
 ```
+### [Prompt.bird](examples/Prompt.bird):
+```
+use Console String
+
+define Main $name
+    $name Console.Prompt "What is your name: "
+    Console.Println String.Concat "Hello " $name
+end
+
+# Prompts 'What is your name: ' then prints 'Hello <name>'
+```
 
 ## Usage
 Clone or download this repo and then enter the new folder
