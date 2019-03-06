@@ -1,8 +1,8 @@
-use std
+use Console String
 
 define Main $name
-    $name Prompt "What is your name: "
-    Println concat "Hello " $name
+    $name Console.Prompt "What is your name: "
+    Console.Println String.Concat "Hello " $name
 end
 
 # Prompts 'What is your name: ' then prints 'Hello <name>'

@@ -15,27 +15,49 @@
 ## Examples
 ### [HelloWorld.bird](examples/HelloWorld.bird):
 ```
-use std
+use Console
 
 define Main
-    Println "Hello World"
+    Console.Println "Hello World"
 end
 
-# Prints "Hello World"
+# Prints 'Hello World'
 ```
 ### [Function.bird](examples/Function.bird):
 ```
-use std
+use Console String Math
 
 define Main $name
-    Println Hello $name
+    Console.Println String.Concat "Hello " $name
+    Console.Println TimesTwo "16"
 end
 
-define Hello $name
-    return "Hello " $name
+define TimesTwo $1
+    $out Math.Mul $1 "2"
+    return $out
 end
 
-#  Prints 'Hello ' + your first command line parameter
+# First prints 'Hello ' + your first command line parameter
+# Then prints '32'
+```
+### [Math.bird](examples/Math.bird):
+```
+use Console Math
+
+define Main
+    Console.Println Math.Add "1" "2"
+    Console.Println Math.Mul "19" "5"
+    Console.Println Math.Sub "7" "3"
+    Console.Println Math.Div "10" "2"
+    Console.Println Math.Mod "20" "5"
+end
+
+# Prints:
+# 3
+# 95
+# -3
+# 5
+# 0
 ```
 
 ## Usage
@@ -61,9 +83,9 @@ Hello Elias
 ```
 
 ## TODO
-- [ ] Arithmetic
+- [x] Arithmetic
+- [x] Expand std (Added replacing libraries instead of expanding std (std is now removed))
 - [ ] Loops
 - [ ] If-statements
-- [ ] Expand std
 
 <sub><sup>Batch is pain. Batch is pain. Batch is pain.</sup></sub>

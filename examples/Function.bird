@@ -1,11 +1,14 @@
-use std
+use Console String Math
 
 define Main $name
-    Println Hello $name
+    Console.Println String.Concat "Hello " $name
+    Console.Println TimesTwo "16"
 end
 
-define Hello $name
-    return "Hello " $name
+define TimesTwo $1
+    $out Math.Mul $1 "2"
+    return $out
 end
 
-#  Prints 'Hello ' + your first command line parameter
+# First prints 'Hello ' + your first command line parameter
+# Then prints '32'

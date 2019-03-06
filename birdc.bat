@@ -11,7 +11,7 @@ set /p code=<%input%
 set output=%2
 
 set lib=%~dp0^lib\
-
+set isLib=false
 set debug=false
 if "%3" == "debug" (
     echo Debugging is enabled
@@ -64,8 +64,13 @@ for /f "tokens=* delims= " %%a in (%input%) do (
 
         if "!skip!" == "false" (
             if "!word[0]!" == "library" (
-                if "!debug!" == "true" echo Library: !line!
+                if "!debug!" == "true" echo Library: !name!
+                set isLib=true
                 set skip=true
+
+                if not "!word[1]!" == "" (
+                    set name=!word[1]!
+                )
             ) else if "!line:~0,1!" == "#" (
                 if "!debug!" == "true" echo Comment: !line!
 
@@ -86,19 +91,30 @@ for /f "tokens=* delims= " %%a in (%input%) do (
                                 if "!debug!" == "true" echo Call: !word[1]!
 
                                 set callSet=true
-                                (echo | set /p=call :!word[1]! !word[0]! ) >> %output%
+                                if "!isLib!" == "true" (
+                                    (echo | set /p=call :!word[1]! $!name!.!word[0]:~1! ) >> %output%
+                                ) else (
+                                    (echo | set /p=call :!word[1]! !word[0]! ) >> %output%
+                                )
                             )
                         )
                     )
 
-                    if not "!callSet!" == "true" (
+                    if "!callSet!" == "false" (
                         if "!debug!" == "true" echo Setting using no call
-                        (echo | set /p=set !word!=) >> %output%
+                        if "!isLib!" == "true" (
+                            (echo | set /p=set $!name!.!word:~1!=) >> %output%
+                        ) else (
+                            (echo | set /p=set !word!=) >> %output%
+                        )
                     )
                 ) else if not "!word[0]!" == "define" (
                     if "!debug!" == "true" echo Variable Get: !word!
-
-                    (echo | set /p=""^^!!word!^^!"") >> %output%
+                    if not "!word[1]:~0,1!" == "$" (
+                        (echo | set /p=""^^!!word!^^!" ") >> %output%
+                    ) else (
+                        (echo | set /p=""^^!!word!^^!"") >> %output%
+                    )
                 )
             ) else if !word:~0^,1!!word:~-1! == "" (
                 if "!debug!" == "true" echo Value: !word!
@@ -122,9 +138,17 @@ for /f "tokens=* delims= " %%a in (%input%) do (
                     if "!debug!" == "true" echo Define: !word[1]!
 
                     if not "!word[2]!" == "" (
-                        (echo :!word[1]!) >> %output%
+                        if "!isLib!" == "true" (
+                            (echo :!name!.!word[1]!) >> %output%
+                        ) else (
+                            (echo :!word[1]!) >> %output%
+                        )
                     ) else (
-                        (echo | set /p=:!word[1]!) >> %output%
+                        if "!isLib!" == "true" (
+                            (echo | set /p=:!name!.!word[1]!) >> %output%
+                        ) else (
+                            (echo | set /p=:!word[1]!) >> %output%
+                        )
                     )
 
                     for /l %%j in (2,1,!i!) do (
@@ -156,8 +180,6 @@ for /f "tokens=* delims= " %%a in (%input%) do (
                 )
             ) else if not "!word!" == "" (
                 if "%%i" == "0" (
-                    if "!debug!" == "true" echo Call: !word[0]!
-
                     if not "!word[1]!" == "" (
                         if not "!word[1]:~0,1!" == "$" (
                             if not !word[1]:~0^,1!!word[1]:~-1! == "" (
@@ -170,6 +192,7 @@ for /f "tokens=* delims= " %%a in (%input%) do (
                     )
 
                     if "!callCall!" == "false" (
+                        if "!debug!" == "true" echo Call: !word[0]!
                         (echo | set /p=call :!word[0]! _0 ) >> %output%
                     )
                 )
@@ -180,6 +203,7 @@ for /f "tokens=* delims= " %%a in (%input%) do (
     (echo.) >> %output%
 
     if "!callCall!" == "true" (
+        if "!debug!" == "true" echo Call: !word[0]!
         (echo set _1=^^!_1:^"=^^!) >> %output%
         (echo call :!word[0]! _0 ^"^^!_1^^!^") >> %output%
     )

@@ -1,7 +1,16 @@
-use Std Math
+use Console Math
 
 define Main
-    println Add "1" "2"
+    Console.Println Math.Add "1" "2"
+    Console.Println Math.Mul "19" "5"
+    Console.Println Math.Sub "7" "3"
+    Console.Println Math.Div "10" "2"
+    Console.Println Math.Mod "20" "5"
 end
 
-# Prints '3'
+# Prints:
+# 3
+# 95
+# -3
+# 5
+# 0

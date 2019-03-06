@@ -1,4 +1,4 @@
-library
+library Console
 
 define Print
     : echo | set /p=%~2
@@ -16,8 +16,4 @@ end
 define Prompt
     : set /p $answer=%~2
     return $answer
-end
-
-define concat $0 $1 $2 $3 $4 $5 $6 $7
-    return $0 $1 $2 $3 $4 $5 $6 $7
 end

@@ -1,7 +1,7 @@
-use std
+use Console
 
 define Main
-    Println "Hello World"
+    Console.Println "Hello World"
 end
 
 # Prints 'Hello World'

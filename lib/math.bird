@@ -1,26 +1,26 @@
-library
+library Math
 
 define Add $x $y
-    :set /a $x+=%$y%
-    return $x
+    :set /a "$out=%$x%+%$y%"
+    return $out
 end
 
 define Sub $x $y
-    :set /a $x-=%$y%
-    return $x
+    :set /a $out=%x%  -%$y%
+    return $out
 end
 
 define Mul $x $y
-    :set /a $x*=%$y%
-    return $x
+    :set /a $out=%$x% * %$y%
+    return $out
 end
 
 define Div $x $y
-    :set /a $x/=%$y%
-    return $x
+    :set /a $out=%$x% / %$y%
+    return $out
 end
 
 define Mod $x $y
-    :set /a $x%%=%$y%
-    return $x
+    :set /a $out=%$x% %% %$y%
+    return $out
 end
