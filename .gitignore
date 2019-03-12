@@ -1,3 +1,4 @@
 examples/*.bat
-# Bird lib file, basically batch files
+examples/*.blib
 lib/*.blib
+lib/*.bat

@@ -25,11 +25,12 @@ end
 ```
 ### [Function.bird](examples/Function.bird):
 ```
-use Console String Math
+use Console String Math "Library"
 
 define Main $name
     Console.Println String.Concat "Hello " $name
     Console.Println TimesTwo "16"
+    Library.PrintHello
 end
 
 define TimesTwo $1
@@ -39,6 +40,7 @@ end
 
 # First prints 'Hello ' + your first command line parameter
 # Then prints '32'
+# And lastly prints 'Hello'
 ```
 ### [Math.bird](examples/Math.bird):
 ```

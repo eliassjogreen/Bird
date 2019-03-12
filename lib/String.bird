@@ -3,3 +3,35 @@ library String
 define Concat $0 $1 $2 $3 $4 $5 $6 $7
     return $0 $1 $2 $3 $4 $5 $6 $7
 end
+
+define GetFirst $string
+    :set $string="%$string:~0,1%"
+    return $string
+end
+
+define GetLast $string
+    :set $string="%$string:~-1%"
+    return $string
+end
+
+define StartsWith $string $what
+    $out false
+    :if "%$string:~0,1%" == "%$what%" set $out=true
+    return $out
+end
+
+define EndsWith $string $what
+    $out false
+    :if "%$string:~-1%" == "%$what%" set $out=true
+    return $out
+end
+
+define RemoveSpace $string
+    :set $string=%$string: =%
+    return $string
+end
+
+define Replace $string $word $with
+    :set $string=%%$string:%$word%=%$with%%%
+    return $string
+end

@@ -1,0 +1,7 @@
+library
+
+use Console
+
+define Library.PrintHello
+    Console.Println "Hello"
+end

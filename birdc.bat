@@ -5,6 +5,7 @@ setlocal EnableDelayedExpansion
 setlocal EnableExtensions
 
 set input=%1
+set inpath=%~dp1
 set name=%~n1
 set /p code=<%input%
 
@@ -128,6 +129,20 @@ for /f "tokens=* delims= " %%a in (%input%) do (
                             (echo.) >> %output%
                             (echo | type "!lib!!word[%%j]!.blib") >> %output%
                             (echo.) >> %output%
+                        ) else if !word[%%j]:~0^,1!!word[%%j]:~-1! == "" (
+                            set word[%%j]=!word[%%j]:"=!
+                            echo !inpath!!word[%%j]!.blib
+                            if exist "!inpath!!word[%%j]!.blib" (
+                                (echo.) >> %output%
+                                (echo | type "!inpath!!word[%%j]!.blib") >> %output%
+                                (echo.) >> %output%
+                            ) else if exist "!inpath!!word[%%j]!" (
+                                (echo.) >> %output%
+                                (echo | type "!inpath!!word[%%j]!") >> %output%
+                                (echo.) >> %output%
+                            ) else (
+                                if "!debug!" == "true" echo Library: !word[%%j]! cannot be found
+                            )
                         ) else (
                             if "!debug!" == "true" echo Library: !word[%%j]! does not exist
                         )
