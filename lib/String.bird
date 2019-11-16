@@ -5,12 +5,12 @@ define Concat $0 $1 $2 $3 $4 $5 $6 $7
 end
 
 define GetFirst $string
-    :set $string="%$string:~0,1%"
+    $string=:"%$string:~0,1%"
     return $string
 end
 
 define GetLast $string
-    :set $string="%$string:~-1%"
+    $string=:"%$string:~-1%"
     return $string
 end
 
@@ -27,11 +27,11 @@ define EndsWith $string $what
 end
 
 define RemoveSpace $string
-    :set $string=%$string: =%
+    $string=:%$string: =%
     return $string
 end
 
 define Replace $string $word $with
-    :set $string=%%$string:%$word%=%$with%%%
+    $string=:%%$string:%$word%=%$with%%%
     return $string
 end

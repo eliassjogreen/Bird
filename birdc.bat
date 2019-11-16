@@ -56,6 +56,7 @@ for /f "tokens=* delims= " %%a in (%input%) do (
 
     set skip=false
     set return=false
+    set rawSet=false
     set callSet=false
     set callCall=false
 
@@ -89,24 +90,34 @@ for /f "tokens=* delims= " %%a in (%input%) do (
                     if not "!word[1]!" == "" (
                         if not "!word[1]:~0,1!" == "$" (
                             if not !word[1]:~0^,1!!word[1]:~-1! == "" (
-                                if "!debug!" == "true" echo Call: !word[1]!
+                                if !word[1]:~0^,1! == : (
+                                    if "!debug!" == "true" echo Raw: !word[1]:~1!
 
-                                set callSet=true
-                                if "!isLib!" == "true" (
-                                    (echo | set /p=call :!word[1]! $!name!.!word[0]:~1! ) >> %output%
+                                    set rawSet=true
+
+                                    (echo | set /p=set !word[0]!=!word[1]:~1!) >> %output%
                                 ) else (
-                                    (echo | set /p=call :!word[1]! !word[0]! ) >> %output%
+                                    if "!debug!" == "true" echo Call: !word[1]!
+
+                                    set callSet=true
+                                    if "!isLib!" == "true" (
+                                        (echo | set /p=call :!word[1]! $!name!.!word[0]:~1! ) >> %output%
+                                    ) else (
+                                        (echo | set /p=call :!word[1]! !word[0]! ) >> %output%
+                                    )
                                 )
                             )
                         )
                     )
 
                     if "!callSet!" == "false" (
-                        if "!debug!" == "true" echo Setting using no call
-                        if "!isLib!" == "true" (
-                            (echo | set /p=set $!name!.!word:~1!=) >> %output%
-                        ) else (
-                            (echo | set /p=set !word!=) >> %output%
+                        if "!rawSet!" == "false" (
+                            if "!debug!" == "true" echo Setting using no call or raw
+                            if "!isLib!" == "true" (
+                                (echo | set /p=set $!name!.!word:~1!=) >> %output%
+                            ) else (
+                                (echo | set /p=set !word!=) >> %output%
+                            )
                         )
                     )
                 ) else if not "!word[0]!" == "define" (
